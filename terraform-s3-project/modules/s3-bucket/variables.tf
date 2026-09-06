@@ -25,5 +25,8 @@ variable "transition_to_glacier_days" {
   description = "Number of days before objects transition to Glacier"
   type =  number
 }
-
+variable "expiration_days" {
+  description = "Number of day before object get deleted  "
+  type = number 
+}
 

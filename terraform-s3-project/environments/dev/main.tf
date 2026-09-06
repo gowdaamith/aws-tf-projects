@@ -13,4 +13,6 @@ module "s3_security" {
   bucket_arn = module.s3_bucket.bucket_arn
 }
 
-
+module "s3_logging" {
+  source  = "../../modules/s3-logging"
+  bucket_name = ${var.bucket_name}-logs"

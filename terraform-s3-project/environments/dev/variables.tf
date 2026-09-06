@@ -20,3 +20,20 @@ variable "aws_region" {
   type        = string
   default     = "ap-south-1"
 }
+
+variable "transition_to_ia_days" {
+  description = "Dev Standard IA transition period "
+  type = number 
+}
+
+variable "transition_to_glacier_days" {
+  description = "Dev Glacier transition  period"
+  type = number 
+}
+
+variable "expiration_days" {
+  description  = "Dev object expiration period"
+  type = number 
+
+}
+

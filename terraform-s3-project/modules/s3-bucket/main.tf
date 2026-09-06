@@ -32,7 +32,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
     }
     transition {
       days = var.transition_to_ia_days
-      storage_class = "STANDARD_ID"
+      storage_class = "STANDARD_IA"
     }
     transition {
       days =  var.transition_to_glacier_days

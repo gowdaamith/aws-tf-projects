@@ -13,4 +13,12 @@ output "bucket_name" {
   value       = module.s3_bucket.bucket_name
 }
 
+output "log_bucket_name" {
+  description = "this is the bucket name of the s3 wwhich store the log"
+  value = module.s3_logging.bucket_id
+}
 
+output "log_bucket_arnr" {
+  description ="s3 logging bucket arn"
+  value - module.s3_logging.log_bucket_arn
+}
