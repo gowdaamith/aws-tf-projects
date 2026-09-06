@@ -29,4 +29,12 @@ variable "expiration_days" {
   description = "Number of day before object get deleted  "
   type = number 
 }
+variable "bucket_versioning_name" {
+  description = "Enter the name of the bucket you need to version here "
+  type = list(string)
+  validation {
+    condition = length(var.bucket_names) >= 2
+    error_message = "Provide the name of both the bucket ."
+  }
+}
 
