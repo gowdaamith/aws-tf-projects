@@ -34,3 +34,9 @@ variable "allowed_ssh_cidr" {
   type        = string
 
 }
+#variable "iam_instance_profile" {
+#  description = "IAM instance profile attached to the ec2 instance"
+#  type        = string
+#}
+
+
