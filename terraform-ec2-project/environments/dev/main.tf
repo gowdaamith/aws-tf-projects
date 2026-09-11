@@ -33,6 +33,7 @@ module "ec2" {
   instance_name        = "${var.environment}-web-server"
   environment          = var.environment
   iam_instance_profile = module.iam.instance_profile_name
+  data_volume_size =  var.data_volume_size
   user_data = templatefile(
     "${path.root}/../../scripts/user-data.sh",
     {
