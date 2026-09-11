@@ -34,6 +34,12 @@ variable "allowed_ssh_cidr" {
   type        = string
 
 }
+variable "data_volume_size" {
+  description = "size of the additional EBS data volume in Gb"
+  type        = number
+}
+
+
 #variable "iam_instance_profile" {
 #  description = "IAM instance profile attached to the ec2 instance"
 #  type        = string

@@ -40,13 +40,18 @@ variable "user_data" {
 
 variable "data_volume_size" {
   description = "Size of the additional EBS data volume is Gi"
-  type = number 
+  type        = number
 }
 
 variable "data_volume_type" {
-  description = "Type of the additional EBS data volume" 
+  description = "Type of the additional EBS data volume"
+  type        = string
+  default     = "gp3"
+}
+
+variable "availability_zone" {
+  description = "Enter the availability zone "
   type = string 
-  default = "gp3"
 }
 
 

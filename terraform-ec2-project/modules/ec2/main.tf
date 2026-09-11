@@ -5,11 +5,17 @@ resource "aws_instance" "this" {
   vpc_security_group_ids = var.security_group_id
   iam_instance_profile   = var.iam_instance_profile
   user_data              = var.user_data
+  monitoring = true
   root_block_device {
     volume_type           = "gp3"
     volume_size           = 20
     encrypted             = true
     delete_on_termination = true
+  }
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 1
   }
 
   tags = {
@@ -21,20 +27,22 @@ resource "aws_instance" "this" {
 
 resource "aws_ebs_volume" "this" {
   availability_zone = var.availability_zone
-  size = 10
-  encrypted = true
-  
+  size              = 10
+  encrypted         = true
+
   tags = {
     Name        = "${var.instance_name}-data"
     Environment = var.environment
     ManagedBy   = "Terraform"
+    backup=true
+
   }
 }
 
 
 resource "aws_volume_attachment" "ebs_att" {
   device_name = "/dev/sdh"
-  volume_id = aws_ebs_volume.this.id
+  volume_id   = aws_ebs_volume.this.id
   instance_id = aws_instance.this.id
 }
 
