@@ -30,16 +30,16 @@ module "private_app_subnet" {
   environment  = var.environment
   vpc_id       = module.vpc.vpc_id
   subnet_tier  = "private-app"
-  subnets       = var.private_app_subnets
+  subnets      = var.private_app_subnets
 }
 
 module "database_subnets" {
   source       = "../../modules/subnet"
   project_name = var.project_name
-  environment = var.environment
+  environment  = var.environment
   vpc_id       = module.vpc.vpc_id
   subnet_tier  = "database"
-  subnets       = var.database_subnets
+  subnets      = var.database_subnets
 }
 
 
