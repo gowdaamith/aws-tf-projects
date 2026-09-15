@@ -46,3 +46,19 @@ variable "database_subnets" {
     cidr_block        = string
   }))
 }
+
+variable "traffic_type" {
+  description = "Enter the type of the traffic you want to capture from the vpc flow logs"
+  type        = string
+  validation {
+    condition = contains(
+      ["ACCEPT", "REJECT", "ALL"],
+      var.traffic_type
+    )
+
+    error_message = "traffic_type must be ACCEPT, REJECT, or ALL."
+  }
+
+}
+
+

@@ -123,3 +123,18 @@ module "database_route_table_c" {
 
   }
 }
+
+module "flow_log_bucket" {
+  source = "../../modules/logging-bucket"
+  name   = "${var.project_name}-${var.environment}-flow-logs"
+}
+
+module "vpc_flow_logs" {
+  source          = "../../modules/vpc-flow-logs"
+  vpc_id          = module.vpc.vpc_id
+  name            = "${var.project_name}-${var.environment}-vpc-flow-logs"
+  traffic_type    = var.traffic_type
+  log_destination = module.flow_log_bucket.bucket_arn
+}
+
+
