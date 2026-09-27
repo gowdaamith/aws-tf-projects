@@ -36,4 +36,13 @@ output "internet_gateway_id" {
   value       = module.internet_gateway.internet_gateway_id
 }
 
+output "nat_gateway_ids" {
+  description = "NAT gateway ids"
+  value       = module.nat_gateway.nat_gateway_ids
+}
+
+output "nat_gateway_public_ips" {
+  description = "NAT gateway public ip addresses"
+  value       = module.nat_gateway.nat_gateway_public_ips
+}
 
