@@ -43,3 +43,23 @@ module "nat_gateway" {
   public_subnet_ids = module.subnet.public_subnet_ids
 }
 
+
+module "nacl" {
+  source              = "../../modules/nacl"
+  vpc_id              = module.vpc.id
+  public_subnet_ids   = module.subnet.public_subnet_ids
+  private_subnet_ids  = module.subnet.private_subnet_ids
+  database_subnet_ids = module.subnet.database_subnet_ids
+}
+
+module "security_group" {
+  source   = "../../modules/security-group"
+  vpc_id   = module.vpc.id
+  vpc_cidr = module.vpc.vpc_cidr
+}
+
+module "iam" {
+  source = "../../modules/iam"
+
+  name_prefix = "${var.project_name}-${var.environment}"
+}
