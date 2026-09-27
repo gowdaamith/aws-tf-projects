@@ -1,12 +1,19 @@
 module "vpc" {
-  source          = "../../modules/vpc"
-  vpc_cidr        = var.vpc_cidr
-  project_name    = var.project_name
-  environment     = var.environment
-  public_subnets  = var.public_subnets
-  private_subnets = var.private_subnets
-  enable_nat_gateway = var.enable_nat_gateway
-  single_nat_gateway = var.single_nat_gateway
+  source     = "../../modules/vpc"
+  name       = "${var.project_name}-${var.environment}-vpc"
+  cidr_range = var.cidr_range
+}
+
+module "subnet" {
+  source  = "../../modules/subnet"
+  vpc_id  = module.vpc.id
+  subnets = var.subnets
+}
+
+module "internet_gateway" {
+  source = "../../modules/internet-gateway"
+  vpc_id = module.vpc.id
+  name   = "${var.project_name}-${var.environment}-igw"
 }
 
 

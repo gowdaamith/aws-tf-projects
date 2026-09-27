@@ -1,11 +1,11 @@
-variable "cidr_range" {
+variable "cidr_block" {
   description = "Enter the cidr range for the vpc"
-  type        = string
+  type = string
 }
 
 variable "name" {
   description = "Enter the name of the vpc"
-  type        = string
+  type = string
 }
 
 

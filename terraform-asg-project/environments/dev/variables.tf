@@ -1,52 +1,32 @@
 variable "aws_region" {
-  description = "enter the region where you want to  creat the resource "
+  description = "Enter the region where you want to create the resources"
   type        = string
+  default     = "ap-south-1"
 }
 
 variable "project_name" {
-  description = "enter the name of the project"
+  description = "Enter the name of the project"
   type        = string
 }
 
 variable "environment" {
-  description = "Enter the environment fo the project"
+  description = "Enter the name of the current environment"
   type        = string
 }
 
-
-variable "vpc_cidr" {
-  description = "CIDR block for the VPC"
+variable "cidr_range" {
+  description = "Enter the cidr range of the vpc createed"
   type        = string
+
 }
 
-variable "public_subnets" {
-  description = "Public subnet configuration"
-
+variable "subnets" {
+  description = "Enter the subnets information you want to create"
   type = map(object({
     cidr_block        = string
     availability_zone = string
+    subnet_type       = string
   }))
-}
-
-variable "private_subnets" {
-  description = "Private application subnet configuration"
-
-  type = map(object({
-    cidr_block        = string
-    availability_zone = string
-  }))
-}
-
-variable "enable_nat_gateway" {
-  description = "Whether to create a nat gateway"
-  type = bool
-  default = true
-}
-
-variable "single_nat_gateway" {
-  description = "Whether to use one nat gateway for all private subnets"
-  type = bool
-  default = true
 }
 
 
