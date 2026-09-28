@@ -92,3 +92,15 @@ output "instance_profile_name" {
   description = "EC2 instance profile name"
   value       = module.iam.instance_profile_name
 }
+
+output "launch_template_ids" {
+  description = "Launch Template IDs"
+  value       = module.launch_template.launch_template_ids
+}
+
+output "launch_template_names" {
+  description = "Launch Template names"
+  value       = module.launch_template.launch_template_name
+}
+
+

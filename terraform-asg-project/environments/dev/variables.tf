@@ -29,4 +29,23 @@ variable "subnets" {
   }))
 }
 
+variable "instance_configs" {
+  description = "Ec2 launch template instance configuration "
+  type = map(object({
+    instance_type = string
+    volume_size   = string
+    volume_type   = string
+  }))
+}
+
+variable "user_data" {
+  description = "Ec2 startup script"
+  type        = string
+}
+
+variable "load_balancer_type" {
+  description = "load balancer type "
+  type        = string
+}
+
 

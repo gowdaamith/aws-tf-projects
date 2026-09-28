@@ -63,3 +63,26 @@ module "iam" {
 
   name_prefix = "${var.project_name}-${var.environment}"
 }
+
+
+module "launch_template" {
+  source           = "../../modules/launch-template"
+  name_prefix      = "${var.project_name}-${var.environment}"
+  instance_configs = var.instance_configs
+  security_group_ids = [
+    module.security_group.app_security_group_id
+  ]
+  instance_profile_name = module.iam.instance_profile_name
+  user_data             = var.user_data
+}
+
+module "alb" {
+  source             = "../../modules/alb"
+  prefix_name        = "${var.project_name}-${var.environment}"
+  vpc_id             = module.vpc.id
+  public_subnet_ids  = module.subnet.public_subnet_ids
+  security_group_ids = module.security_group.alb_security_group_id
+  load_balancer_type = var.load_balancer_type
+}
+
+
