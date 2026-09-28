@@ -85,4 +85,30 @@ module "alb" {
   load_balancer_type = var.load_balancer_type
 }
 
+module "auto_scaling_group" {
+  source = "../../modules/autoscaling-group"
 
+  name_prefix = "${var.project_name}-${var.environment}"
+
+  launch_template_id = module.launch_template.launch_template_ids["app"]
+
+  launch_template_version = "$Latest"
+
+  private_subnet_ids = module.subnet.private_subnet_ids
+
+  target_group_arn = module.alb.target_group_arn
+
+  min_size         = 2
+  desired_capacity = 3
+  max_size         = 6
+}
+
+
+
+module "cloudwatch" {
+  source = "../../modules/cloudwatch"
+
+  autoscaling_group_name = module.auto_scaling_group.autoscaling_group_name
+
+  target_cpu_utilization = 50
+}
